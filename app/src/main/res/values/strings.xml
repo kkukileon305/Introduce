@@ -1,0 +1,9 @@
+<resources>
+  <string name="app_name">Introduce</string>
+  <string name="title">title</string>
+  <string name="label_email">아이디</string>
+  <string name="hints_email">아이디를 입력하세요.</string>
+  <string name="label_password">비밀번호</string>
+  <string name="btn_signin">로그인</string>
+  <string name="btn_signup">회원가입</string>
+</resources>
