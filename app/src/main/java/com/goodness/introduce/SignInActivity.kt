@@ -13,15 +13,19 @@ class SignInActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_signin)
 
+		val emailView = findViewById<EditText>(R.id.et_email)
+		val passwordView = findViewById<EditText>(R.id.et_password)
+
 		findViewById<Button>(R.id.btn_signin).setOnClickListener {
-			val email = findViewById<EditText>(R.id.et_email).text.toString()
-			val password = findViewById<EditText>(R.id.et_password).text.toString()
+			val email = emailView.text.toString()
+			val password = passwordView.text.toString()
 
 			if (email.isNotEmpty() && password.isNotEmpty()) {
 				val intent = Intent(this, HomeActivity::class.java)
 
 				intent.putExtra("email", email)
 				startActivity(intent)
+				Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
 			} else {
 				Toast.makeText(this, "아이디/비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
 			}
