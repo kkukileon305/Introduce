@@ -6,5 +6,112 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".HomeActivity">
+  <ImageView
+          android:id="@+id/title"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="140dp"
+          android:src="@drawable/title"
+          android:contentDescription="@string/title"
+          android:scaleType="fitCenter"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          android:layout_marginTop="40dp"
+  />
+
+  <TextView
+          android:id="@+id/label_name"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:text="@string/label_name"
+          android:textSize="18sp"
+          android:textColor="#aaaaaa"
+          app:layout_constraintTop_toBottomOf="@id/title"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          android:layout_marginTop="60dp"
+  />
+
+  <TextView
+          android:id="@+id/txt_name"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:text="@string/label_name"
+          android:textSize="18sp"
+          app:layout_constraintTop_toBottomOf="@id/label_name"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+  />
+
+  <!-- email -->
+  <TextView
+          android:id="@+id/label_email"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:text="@string/label_email"
+          android:textSize="18sp"
+          android:textColor="#aaaaaa"
+          app:layout_constraintTop_toBottomOf="@id/txt_name"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          android:layout_marginTop="20dp"
+  />
+
+  <TextView
+          android:id="@+id/txt_email"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:text="@string/label_email"
+          android:textSize="18sp"
+          app:layout_constraintTop_toBottomOf="@id/label_email"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+  />
+
+  <!-- password  -->
+  <TextView
+          android:id="@+id/label_password"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:text="@string/label_password"
+          android:textSize="18sp"
+          android:textColor="#aaaaaa"
+          app:layout_constraintTop_toBottomOf="@id/txt_email"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          android:layout_marginTop="20dp"
+  />
+
+  <TextView
+          android:id="@+id/txt_password"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:text="@string/label_password"
+          android:textSize="18sp"
+          app:layout_constraintTop_toBottomOf="@id/label_password"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+  />
+
+  <!--  buttons-->
+  <Button
+          android:id="@+id/btn_finish"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:text="@string/btn_finish"
+          android:textSize="18sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          android:layout_marginBottom="40dp"
+  />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
