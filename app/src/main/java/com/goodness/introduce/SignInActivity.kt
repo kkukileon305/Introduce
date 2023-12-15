@@ -13,7 +13,6 @@ class SignInActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_signin)
 
-
 		findViewById<Button>(R.id.btn_signin).setOnClickListener {
 			val email = findViewById<EditText>(R.id.et_email).text.toString()
 			val password = findViewById<EditText>(R.id.et_password).text.toString()

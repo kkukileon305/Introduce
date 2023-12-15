@@ -10,4 +10,7 @@
   <string name="btn_signin">로그인</string>
   <string name="btn_signup">회원가입</string>
   <string name="btn_finish">종료</string>
+  <string name="label_mbti">MBTI</string>
+  <string name="mbti">INTP</string>
+  <string name="name">내이름</string>
 </resources>
