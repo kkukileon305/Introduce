@@ -13,12 +13,12 @@ class SignInActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_signin)
 
-		val emailView = findViewById<EditText>(R.id.et_email)
-		val passwordView = findViewById<EditText>(R.id.et_password)
+		val emailEditView = findViewById<EditText>(R.id.et_email)
+		val passwordEditView = findViewById<EditText>(R.id.et_password)
 
 		findViewById<Button>(R.id.btn_signin).setOnClickListener {
-			val email = emailView.text.toString()
-			val password = passwordView.text.toString()
+			val email = emailEditView.text.toString()
+			val password = passwordEditView.text.toString()
 
 			if (email.isNotEmpty() && password.isNotEmpty()) {
 				val intent = Intent(this, HomeActivity::class.java)
