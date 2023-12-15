@@ -1,11 +1,12 @@
 package com.goodness.introduce
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 
@@ -13,6 +14,10 @@ class SignUpActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_signup)
+
+		val nameWarnTextView = findViewById<TextView>(R.id.warn_name)
+		val emailWarnTextView = findViewById<TextView>(R.id.warn_email)
+		val passwordWarnTextView = findViewById<TextView>(R.id.warn_password)
 
 		val nameEditView = findViewById<EditText>(R.id.et_name)
 		val emailEditView = findViewById<EditText>(R.id.et_email)
@@ -31,8 +36,12 @@ class SignUpActivity : AppCompatActivity() {
 		}
 
 		nameEditView.addTextChangedListener {
-			Log.d("debug", it.toString())
+			val name = it.toString()
+			nameWarnTextView.text = if (name.isEmpty()) "이름을 입력해주세요." else ""
 		}
+	}
 
+	fun isEmailValid(email: String): Boolean {
+		return Patterns.EMAIL_ADDRESS.matcher(email).matches()
 	}
 }
