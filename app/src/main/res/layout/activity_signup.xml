@@ -49,6 +49,17 @@
           android:autofillHints="emailAddress"
   />
 
+  <TextView
+          android:id="@+id/warn_name"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:textColor="#FF0000"
+          app:layout_constraintTop_toBottomOf="@id/et_name"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+  />
+
   <!-- email -->
   <TextView
           android:id="@+id/label_email"
@@ -57,10 +68,10 @@
           android:layout_height="wrap_content"
           android:text="@string/label_email"
           android:textSize="18sp"
-          app:layout_constraintTop_toBottomOf="@id/et_name"
+          app:layout_constraintTop_toBottomOf="@id/warn_name"
           app:layout_constraintLeft_toLeftOf="parent"
           app:layout_constraintRight_toRightOf="parent"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="12dp"
   />
 
   <EditText
@@ -77,6 +88,17 @@
           android:autofillHints="emailAddress"
   />
 
+  <TextView
+          android:id="@+id/warn_email"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:textColor="#FF0000"
+          app:layout_constraintTop_toBottomOf="@id/et_email"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+  />
+
   <!-- password  -->
   <TextView
           android:id="@+id/label_password"
@@ -85,7 +107,7 @@
           android:layout_height="wrap_content"
           android:text="@string/label_password"
           android:textSize="18sp"
-          app:layout_constraintTop_toBottomOf="@id/et_email"
+          app:layout_constraintTop_toBottomOf="@id/warn_email"
           app:layout_constraintLeft_toLeftOf="parent"
           app:layout_constraintRight_toRightOf="parent"
           android:layout_marginTop="20dp"
@@ -103,6 +125,17 @@
           android:hint="@string/hints_password"
           android:inputType="textPassword"
           android:autofillHints="password"
+  />
+
+  <TextView
+          android:id="@+id/warn_password"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:textColor="#FF0000"
+          app:layout_constraintTop_toBottomOf="@id/et_password"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
   />
 
   <!-- buttons -->
