@@ -20,6 +20,7 @@ class SignUpActivity : AppCompatActivity() {
 
 	private val nameEditView by lazy { findViewById<EditText>(R.id.et_name) }
 	private val emailEditView by lazy { findViewById<EditText>(R.id.et_email) }
+	private val emailBodyEdit by lazy { findViewById<EditText>(R.id.et_email_body) }
 	private val passwordEditView by lazy { findViewById<EditText>(R.id.et_password) }
 
 	private val spinnerView by lazy { findViewById<Spinner>(R.id.sp_email) }
@@ -73,11 +74,11 @@ class SignUpActivity : AppCompatActivity() {
 
 		spinnerView.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 			override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-				TODO("Not yet implemented")
+				emailBodyEdit.visibility = if (position == emailList.size - 1) View.VISIBLE else View.GONE
 			}
 
 			override fun onNothingSelected(parent: AdapterView<*>?) {
-				TODO("Not yet implemented")
+
 			}
 		}
 	}

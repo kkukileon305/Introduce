@@ -3,6 +3,7 @@
   <string name="title">title</string>
   <string name="label_email">이메일</string>
   <string name="hints_email">이메일을 입력하세요.</string>
+  <string name="hints_email_body">직접 입력</string>
   <string name="label_password">비밀번호</string>
   <string name="hints_password">비밀번호를 입력하세요.</string>
   <string name="label_name">이름</string>
