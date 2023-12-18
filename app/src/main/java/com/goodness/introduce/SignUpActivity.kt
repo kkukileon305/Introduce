@@ -35,10 +35,15 @@ class SignUpActivity : AppCompatActivity() {
 			}
 		}
 
-		nameEditView.addTextChangedListener {
-			val name = it.toString()
-			nameWarnTextView.text = if (name.isEmpty()) "이름을 입력해주세요." else ""
+		nameEditView.setOnFocusChangeListener { v, hasFocus ->
+			if (!hasFocus && v is EditText) {
+				val name = v.text.toString()
+				nameWarnTextView.text = if (name.isEmpty()) "이름을 입력해주세요." else ""
+			}
 		}
+
+		//TODO Email Validation
+		//TODO Password Validation
 	}
 
 	fun isEmailValid(email: String): Boolean {
