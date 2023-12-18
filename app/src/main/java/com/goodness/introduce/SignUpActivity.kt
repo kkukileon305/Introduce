@@ -16,12 +16,18 @@ import androidx.core.widget.addTextChangedListener
 class SignUpActivity : AppCompatActivity() {
 	private val nameWarnTextView by lazy { findViewById<TextView>(R.id.warn_name) }
 	private val emailWarnTextView by lazy { findViewById<TextView>(R.id.warn_email) }
+	private val emailBodyWarnTextView by lazy { findViewById<TextView>(R.id.warn_email_body) }
 	private val passwordWarnTextView by lazy { findViewById<TextView>(R.id.warn_password) }
 
 	private val nameEditView by lazy { findViewById<EditText>(R.id.et_name) }
 	private val emailEditView by lazy { findViewById<EditText>(R.id.et_email) }
-	private val emailBodyEdit by lazy { findViewById<EditText>(R.id.et_email_body) }
+	private val emailBodyEditView by lazy { findViewById<EditText>(R.id.et_email_body) }
 	private val passwordEditView by lazy { findViewById<EditText>(R.id.et_password) }
+
+	private var isNameValidation = false
+	private var isEmailValidation = false
+	private var isEmailBodyValidation = true
+	private var isPasswordValidation = false
 
 	private val spinnerView by lazy { findViewById<Spinner>(R.id.sp_email) }
 
@@ -49,18 +55,42 @@ class SignUpActivity : AppCompatActivity() {
 			if (!hasFocus && v is EditText) {
 				val name = v.text.toString()
 				nameWarnTextView.text = if (name.isEmpty()) "이름을 입력해주세요." else ""
+				isNameValidation = name.isNotEmpty()
+
+				checkAllValidation()
 			}
 		}
 
 		emailEditView.setOnFocusChangeListener { v, hasFocus ->
 			if (!hasFocus && v is EditText) {
-
 				val email = v.text.toString()
-				emailWarnTextView.text = if (isEmailValid(email)) "" else "유효한 이메일을 입력해주세요."
+				emailWarnTextView.text = if (email.isEmpty()) "이메일 아이디를 입력해주세요." else ""
+				isEmailValidation = email.isNotEmpty()
+
+				checkAllValidation()
+			}
+		}
+
+		emailBodyEditView.setOnFocusChangeListener { v, hasFocus ->
+			if (!hasFocus && v is EditText) {
+				val emailBody = v.text.toString()
+				emailBodyWarnTextView.text = if (emailBody.isEmpty()) "도메인을 입력해주세요." else ""
+				isEmailBodyValidation = emailBody.isNotEmpty()
+
+				checkAllValidation()
 			}
 		}
 
 		//TODO Password Validation
+		passwordEditView.setOnFocusChangeListener { v, hasFocus ->
+			if (!hasFocus && v is EditText) {
+				val password = v.text.toString()
+				passwordWarnTextView.text = if (isPasswordValid(password)) "" else "소문자, 대문자, 특수문자 포함"
+				isPasswordValidation = isPasswordValid(password)
+
+				checkAllValidation()
+			}
+		}
 
 
 		val emailList = listOf(
@@ -74,7 +104,11 @@ class SignUpActivity : AppCompatActivity() {
 
 		spinnerView.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 			override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-				emailBodyEdit.visibility = if (position == emailList.size - 1) View.VISIBLE else View.GONE
+				emailBodyEditView.visibility = if (position == emailList.size - 1) View.VISIBLE else View.GONE
+				emailBodyWarnTextView.visibility = if (position == emailList.size - 1) View.VISIBLE else View.GONE
+				isEmailBodyValidation = position != emailList.size - 1
+
+				checkAllValidation()
 			}
 
 			override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -83,7 +117,12 @@ class SignUpActivity : AppCompatActivity() {
 		}
 	}
 
-	private fun isEmailValid(email: String): Boolean {
-		return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+	private fun checkAllValidation() {
+		// TODO 버튼 Disabled 설정
+	}
+
+	fun isPasswordValid(password: String): Boolean {
+		val regex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%^&*(),.?\":{}|<>])")
+		return regex.containsMatchIn(password)
 	}
 }

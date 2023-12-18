@@ -90,10 +90,22 @@
   <Spinner
           android:id="@+id/sp_email"
           android:layout_width="0dp"
-          app:layout_constraintWidth_percent="0.5"
+          app:layout_constraintWidth_percent="0.3"
           android:layout_height="wrap_content"
           app:layout_constraintLeft_toRightOf="@id/et_email"
-          app:layout_constraintTop_toBottomOf="@id/label_email"
+          app:layout_constraintTop_toTopOf="@id/et_email"
+          app:layout_constraintBottom_toBottomOf="@id/et_email"
+  />
+
+  <TextView
+          android:id="@+id/warn_email"
+          android:layout_width="0dp"
+          app:layout_constraintWidth_percent="0.8"
+          android:layout_height="wrap_content"
+          android:textColor="#FF0000"
+          app:layout_constraintTop_toBottomOf="@id/et_email"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
   />
 
   <EditText
@@ -103,7 +115,7 @@
           android:layout_height="wrap_content"
           android:hint="@string/hints_email_body"
           android:textSize="18sp"
-          app:layout_constraintTop_toBottomOf="@id/et_email"
+          app:layout_constraintTop_toBottomOf="@id/warn_email"
           app:layout_constraintLeft_toLeftOf="@id/label_email"
           android:autofillHints="emailAddress"
           android:inputType="textEmailAddress"
@@ -111,7 +123,7 @@
   />
 
   <TextView
-          android:id="@+id/warn_email"
+          android:id="@+id/warn_email_body"
           android:layout_width="0dp"
           app:layout_constraintWidth_percent="0.8"
           android:layout_height="wrap_content"
@@ -119,6 +131,7 @@
           app:layout_constraintTop_toBottomOf="@id/et_email_body"
           app:layout_constraintLeft_toLeftOf="parent"
           app:layout_constraintRight_toRightOf="parent"
+          android:visibility="gone"
   />
 
   <!-- password  -->
@@ -129,7 +142,7 @@
           android:layout_height="wrap_content"
           android:text="@string/label_password"
           android:textSize="18sp"
-          app:layout_constraintTop_toBottomOf="@id/warn_email"
+          app:layout_constraintTop_toBottomOf="@id/warn_email_body"
           app:layout_constraintLeft_toLeftOf="parent"
           app:layout_constraintRight_toRightOf="parent"
           android:layout_marginTop="20dp"
