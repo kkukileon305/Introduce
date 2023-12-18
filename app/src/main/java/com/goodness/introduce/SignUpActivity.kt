@@ -1,9 +1,8 @@
 package com.goodness.introduce
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
@@ -11,7 +10,6 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 
 class SignUpActivity : AppCompatActivity() {
 	private val nameWarnTextView by lazy { findViewById<TextView>(R.id.warn_name) }
@@ -31,6 +29,8 @@ class SignUpActivity : AppCompatActivity() {
 
 	private val spinnerView by lazy { findViewById<Spinner>(R.id.sp_email) }
 
+	private val signupBtn by lazy { findViewById<Button>(R.id.btn_signup) }
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_signup)
@@ -47,6 +47,7 @@ class SignUpActivity : AppCompatActivity() {
 			if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
 				finish()
 			} else {
+				//	Focus Out 이벤트 없이 클릭하는 경우를 막음
 				Toast.makeText(this, "입력되지 않은 정보가 있습니다.", Toast.LENGTH_SHORT).show()
 			}
 		}
@@ -81,7 +82,6 @@ class SignUpActivity : AppCompatActivity() {
 			}
 		}
 
-		//TODO Password Validation
 		passwordEditView.setOnFocusChangeListener { v, hasFocus ->
 			if (!hasFocus && v is EditText) {
 				val password = v.text.toString()
@@ -104,9 +104,15 @@ class SignUpActivity : AppCompatActivity() {
 
 		spinnerView.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 			override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-				emailBodyEditView.visibility = if (position == emailList.size - 1) View.VISIBLE else View.GONE
-				emailBodyWarnTextView.visibility = if (position == emailList.size - 1) View.VISIBLE else View.GONE
-				isEmailBodyValidation = position != emailList.size - 1
+				if (position == emailList.size - 1) {
+					emailBodyEditView.visibility = View.VISIBLE
+					emailBodyWarnTextView.visibility = View.VISIBLE
+					isEmailBodyValidation = false
+				} else {
+					emailBodyEditView.visibility = View.GONE
+					emailBodyWarnTextView.visibility = View.GONE
+					isEmailBodyValidation = true
+				}
 
 				checkAllValidation()
 			}
@@ -118,10 +124,18 @@ class SignUpActivity : AppCompatActivity() {
 	}
 
 	private fun checkAllValidation() {
-		// TODO 버튼 Disabled 설정
+		val isAllValid = isNameValidation && isEmailValidation && isEmailBodyValidation && isPasswordValidation
+
+		if (isAllValid) {
+			signupBtn.isClickable = true
+			signupBtn.setBackgroundColor(Color.parseColor("#FF5733"))
+		} else {
+			signupBtn.isClickable = false
+			signupBtn.setBackgroundColor(Color.parseColor("#808080"))
+		}
 	}
 
-	fun isPasswordValid(password: String): Boolean {
+	private fun isPasswordValid(password: String): Boolean {
 		val regex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%^&*(),.?\":{}|<>])")
 		return regex.containsMatchIn(password)
 	}
