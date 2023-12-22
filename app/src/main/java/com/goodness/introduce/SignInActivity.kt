@@ -20,7 +20,7 @@ class SignInActivity : AppCompatActivity() {
 			val email = emailEditView.text.toString()
 			val password = passwordEditView.text.toString()
 
-			if (email.isNotEmpty() && password.isNotEmpty()) {
+			if (email.trim().isNotEmpty() && password.trim().isNotEmpty()) {
 				val intent = Intent(this, HomeActivity::class.java)
 
 				intent.putExtra("email", email)
