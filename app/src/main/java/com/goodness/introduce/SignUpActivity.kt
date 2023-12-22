@@ -52,46 +52,38 @@ class SignUpActivity : AppCompatActivity() {
 			}
 		}
 
-		nameEditView.setOnFocusChangeListener { v, hasFocus ->
-			if (!hasFocus && v is EditText) {
-				val name = v.text.toString()
-				nameWarnTextView.text = if (name.isEmpty()) getString(R.string.signup_error_name) else ""
-				isNameValidation = name.isNotEmpty()
+		val editsAndWarns = listOf(
+			nameEditView to nameWarnTextView,
+			emailEditView to emailWarnTextView,
+			emailBodyEditView to emailBodyWarnTextView,
+			passwordEditView to passwordWarnTextView
+		)
 
-				checkAllValidation()
+		editsAndWarns.forEach { (editView, warnView) ->
+			editView.setOnFocusChangeListener { v, hasFocus ->
+				if (!hasFocus && v is EditText) {
+					val value = v.text.toString().trim()
+
+					warnView.text = when (v) {
+						nameEditView -> if (value.isEmpty()) getString(R.string.signup_error_name) else ""
+						emailEditView -> if (value.isEmpty()) getString(R.string.signup_error_email) else ""
+						emailBodyEditView -> if (value.isEmpty()) getString(R.string.signup_error_emailBody) else ""
+						passwordEditView -> if (!isPasswordValid(value)) getString(R.string.signup_error_password) else ""
+						else -> ""
+					}
+
+					when (v) {
+						nameEditView -> isNameValidation = value.isNotEmpty()
+						emailEditView -> isEmailValidation = value.isNotEmpty()
+						emailBodyEditView -> isEmailBodyValidation = value.isNotEmpty()
+						passwordEditView -> isPasswordValidation = isPasswordValid(value)
+						else -> {}
+					}
+
+					checkAllValidation()
+				}
 			}
 		}
-
-		emailEditView.setOnFocusChangeListener { v, hasFocus ->
-			if (!hasFocus && v is EditText) {
-				val email = v.text.toString()
-				emailWarnTextView.text = if (email.isEmpty()) getString(R.string.signup_error_email) else ""
-				isEmailValidation = email.isNotEmpty()
-
-				checkAllValidation()
-			}
-		}
-
-		emailBodyEditView.setOnFocusChangeListener { v, hasFocus ->
-			if (!hasFocus && v is EditText) {
-				val emailBody = v.text.toString()
-				emailBodyWarnTextView.text = if (emailBody.isEmpty()) getString(R.string.signup_error_emailBody) else ""
-				isEmailBodyValidation = emailBody.isNotEmpty()
-
-				checkAllValidation()
-			}
-		}
-
-		passwordEditView.setOnFocusChangeListener { v, hasFocus ->
-			if (!hasFocus && v is EditText) {
-				val password = v.text.toString()
-				passwordWarnTextView.text = if (!isPasswordValid(password)) getString(R.string.signup_error_password) else ""
-				isPasswordValidation = isPasswordValid(password)
-
-				checkAllValidation()
-			}
-		}
-
 
 		val emailList = listOf(
 			EmailData(1, "google.com"),
