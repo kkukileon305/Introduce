@@ -14,4 +14,11 @@
   <string name="label_mbti">MBTI</string>
   <string name="mbti">INTP</string>
   <string name="name">내이름</string>
+  <string name="toast_msg_signin_success">로그인 성공</string>
+  <string name="toast_msg_signup_fail">아이디/비밀번호를 확인해주세요</string>
+  <string name="signup_fail_msg">입력되지 않은 정보가 있습니다.</string>
+  <string name="signup_error_name">이름을 입력해주세요.</string>
+  <string name="signup_error_email">이메일 아이디를 입력해주세요.</string>
+  <string name="signup_error_emailBody">도메인을 입력해주세요.</string>
+  <string name="signup_error_password">소문자, 대문자, 특수문자 포함</string>
 </resources>

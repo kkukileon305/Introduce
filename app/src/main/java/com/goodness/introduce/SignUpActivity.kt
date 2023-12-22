@@ -48,14 +48,14 @@ class SignUpActivity : AppCompatActivity() {
 				finish()
 			} else {
 				//	Focus Out 이벤트 없이 클릭하는 경우를 막음
-				Toast.makeText(this, "입력되지 않은 정보가 있습니다.", Toast.LENGTH_SHORT).show()
+				Toast.makeText(this, getString(R.string.signup_fail_msg), Toast.LENGTH_SHORT).show()
 			}
 		}
 
 		nameEditView.setOnFocusChangeListener { v, hasFocus ->
 			if (!hasFocus && v is EditText) {
 				val name = v.text.toString()
-				nameWarnTextView.text = if (name.isEmpty()) "이름을 입력해주세요." else ""
+				nameWarnTextView.text = if (name.isEmpty()) getString(R.string.signup_error_name) else ""
 				isNameValidation = name.isNotEmpty()
 
 				checkAllValidation()
@@ -65,7 +65,7 @@ class SignUpActivity : AppCompatActivity() {
 		emailEditView.setOnFocusChangeListener { v, hasFocus ->
 			if (!hasFocus && v is EditText) {
 				val email = v.text.toString()
-				emailWarnTextView.text = if (email.isEmpty()) "이메일 아이디를 입력해주세요." else ""
+				emailWarnTextView.text = if (email.isEmpty()) getString(R.string.signup_error_email) else ""
 				isEmailValidation = email.isNotEmpty()
 
 				checkAllValidation()
@@ -75,7 +75,7 @@ class SignUpActivity : AppCompatActivity() {
 		emailBodyEditView.setOnFocusChangeListener { v, hasFocus ->
 			if (!hasFocus && v is EditText) {
 				val emailBody = v.text.toString()
-				emailBodyWarnTextView.text = if (emailBody.isEmpty()) "도메인을 입력해주세요." else ""
+				emailBodyWarnTextView.text = if (emailBody.isEmpty()) getString(R.string.signup_error_emailBody) else ""
 				isEmailBodyValidation = emailBody.isNotEmpty()
 
 				checkAllValidation()
@@ -85,7 +85,7 @@ class SignUpActivity : AppCompatActivity() {
 		passwordEditView.setOnFocusChangeListener { v, hasFocus ->
 			if (!hasFocus && v is EditText) {
 				val password = v.text.toString()
-				passwordWarnTextView.text = if (isPasswordValid(password)) "" else "소문자, 대문자, 특수문자 포함"
+				passwordWarnTextView.text = if (!isPasswordValid(password)) getString(R.string.signup_error_password) else ""
 				isPasswordValidation = isPasswordValid(password)
 
 				checkAllValidation()
